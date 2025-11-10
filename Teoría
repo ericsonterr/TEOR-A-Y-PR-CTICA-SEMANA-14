@@ -1,1 +1,26 @@
+¿Qué es una transacción en SQL Server?
+Una transacción es como un paquete de instrucciones que se ejecutan juntas.
+Si todo sale bien, se guarda. Pero si algo falla, se cancela todo.
+Es como decir: o se hace todo, o no se hace nada.
 
+¿Para qué sirve BEGIN TRAN?
+BEGIN TRAN sirve para empezar una transacción.
+Desde ese punto, los cambios no se guardan todavía, quedan “en espera”.
+
+¿Qué hace COMMIT?
+COMMIT se usa cuando ya revisé que todo está correcto.
+Ahí recién se confirman y se guardan los cambios de forma definitiva.
+
+¿Qué hace ROLLBACK?
+ROLLBACK es para cancelar todo lo que hice desde que inició la transacción.
+Es como decir: me arrepentí → vuelve todo a como estaba antes.
+
+
+¿Cuándo es bueno usar transacciones?
+Cuando estoy trabajando con datos importantes que no pueden quedar incompletos o mal, por ejemplo:
+
+. Actualizar precios
+. Registrar un pago
+. Modificar información importante
+
+Así evito errores en la base.
