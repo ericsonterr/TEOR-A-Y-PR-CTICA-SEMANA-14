@@ -1,1 +1,39 @@
 
+IF OBJECT_ID('tempdb..#ProductosTransaccion') IS NOT NULL
+    DROP TABLE #ProductosTransaccion;
+
+SELECT TOP 5 
+    ProductID,
+    Name AS Producto,
+    ListPrice AS PrecioOriginal
+INTO #ProductosTransaccion
+FROM Production.Product
+WHERE ListPrice IS NOT NULL;
+
+SELECT * FROM #ProductosTransaccion;
+GO
+
+BEGIN TRAN;
+
+UPDATE #ProductosTransaccion
+SET PrecioOriginal = PrecioOriginal * 1.10;  -
+
+SELECT 'ANTES DE COMMIT' AS Estado, * FROM #ProductosTransaccion;
+
+COMMIT;  
+GO
+
+SELECT 'DESPUÉS DE COMMIT' AS Estado, * FROM #ProductosTransaccion;
+GO
+
+BEGIN TRAN;
+
+UPDATE #ProductosTransaccion
+SET PrecioOriginal = PrecioOriginal * 0.90; 
+
+SELECT 'ANTES DE ROLLBACK' AS Estado, * FROM #ProductosTransaccion;
+
+ROLLBACK; 
+GO
+
+SELECT 'DESPUÉS DE ROLLBACK' AS Estado, * FROM #ProductosTransaccion;
