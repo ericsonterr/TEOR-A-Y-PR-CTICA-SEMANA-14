@@ -38,3 +38,6 @@ ROLLBACK;
 GO
 
 SELECT 'DESPUÉS DE ROLLBACK' AS Estado, * FROM #ProductosTransaccion;
+
+
+
